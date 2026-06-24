@@ -71,25 +71,19 @@
 <div id="demo-modal" class="modal">
     <div class="modal-content">
         <button class="modal-close">&times;</button>
-        <h2>How Spendly Works</h2>
         <div class="modal-body">
-            <div class="modal-step">
-                <div class="step-number">1</div>
-                <h3>Log Your Expenses</h3>
-                <p>Add any expense in seconds. Category, amount, date, description — all in one simple form.</p>
-            </div>
-            <div class="modal-step">
-                <div class="step-number">2</div>
-                <h3>Spot Your Patterns</h3>
-                <p>See exactly where your money goes with category breakdowns and monthly summaries.</p>
-            </div>
-            <div class="modal-step">
-                <div class="step-number">3</div>
-                <h3>Stay on Budget</h3>
-                <p>Filter by time period and view your spending for any date range — last week, last month, or custom.</p>
+            <div class="video-container">
+                <iframe
+                    id="demo-video"
+                    width="100%"
+                    height="400"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
-        <a href="{{ url_for('register') }}" class="btn-primary">Get started free</a>
     </div>
 </div>
 

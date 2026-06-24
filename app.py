@@ -1,6 +1,6 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template  # type: ignore[import]
 app = Flask(__name__)
+
 
 
 # ------------------------------------------------------------------ #
@@ -20,6 +20,16 @@ def register():
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+
+@app.route("/terms")
+def terms():
+    return render_template("terms.html")
+
+
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
 
 
 # ------------------------------------------------------------------ #

@@ -5,62 +5,65 @@
 {% block content %}
 
 <section class="hero">
-    <div class="hero-inner">
-        <div class="hero-badge">Free to use · No credit card needed</div>
-        <h1 class="hero-title">
+    <div class="hero-center">
+        <div class="hero-badge" data-animate="fade-up">
+            <span class="badge-dot">●</span>
+            Free to use · No credit card needed
+        </div>
+        <h1 class="hero-title" data-animate="fade-up">
             Track every rupee.<br>
             <em>Know where it goes.</em>
         </h1>
-        <p class="hero-subtitle">
-            Spendly helps you log expenses, spot patterns, and stay
-            on budget — without the spreadsheet headache.
+        <p class="hero-subtitle" data-animate="fade-up">
+            Spendly helps you log expenses, spot patterns, and stay on budget — without the spreadsheet headache.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions" data-animate="fade-up">
             <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
             <button id="demo-button" class="btn-primary">See how it works</button>
         </div>
-    </div>
-    <div class="hero-visual">
-        <div class="dashboard-card">
-            <div class="dashboard-dots">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-orange"></span>
-                <span class="dot dot-green"></span>
-            </div>
-            <div class="dashboard-stats">
-                <div class="stat-card">
-                    <span class="stat-label">This month</span>
-                    <span class="stat-value">₹18,240</span>
-                    <span class="stat-change negative">+12% vs last</span>
+
+        <div class="hero-dashboard" data-animate="fade-up">
+            <div class="dashboard-card">
+                <div class="dashboard-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-orange"></span>
+                    <span class="dot dot-green"></span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-label">Budget left</span>
-                    <span class="stat-value">₹6,760</span>
-                    <span class="stat-change positive">43% remaining</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Transactions</span>
-                    <span class="stat-value">34</span>
-                    <span class="stat-change">this month</span>
-                </div>
-            </div>
-            <div class="dashboard-chart">
-                <div class="chart-row">
-                    <span class="chart-label">Food</span>
-                    <div class="chart-bar-track">
-                        <div class="chart-bar" style="width: 85%; background: #d4a574;"></div>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <span class="stat-label">This month</span>
+                        <span class="stat-value">₹18,240</span>
+                        <span class="stat-change negative">+12% vs last</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Budget left</span>
+                        <span class="stat-value">₹6,760</span>
+                        <span class="stat-change positive">43% remaining</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Transactions</span>
+                        <span class="stat-value">34</span>
+                        <span class="stat-change">this month</span>
                     </div>
                 </div>
-                <div class="chart-row">
-                    <span class="chart-label">Travel</span>
-                    <div class="chart-bar-track">
-                        <div class="chart-bar" style="width: 65%; background: #5b7fa6;"></div>
+                <div class="dashboard-chart">
+                    <div class="chart-row">
+                        <span class="chart-label">Food</span>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" style="width: 72%; background: #d4a574;"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="chart-row">
-                    <span class="chart-label">Bills</span>
-                    <div class="chart-bar-track">
-                        <div class="chart-bar" style="width: 55%; background: #6b5b95;"></div>
+                    <div class="chart-row">
+                        <span class="chart-label">Travel</span>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" style="width: 48%; background: #5b7fa6;"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <span class="chart-label">Bills</span>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" style="width: 38%; background: #6b5b95;"></div>
+                        </div>
                     </div>
                 </div>
             </div>

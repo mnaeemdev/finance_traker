@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Profile — Spendly{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+
+    <!-- Profile Header Card -->
+    <div class="profile-hero-card">
+        <div class="profile-avatar">{{ user['name'][0].upper() }}</div>
+        <div class="profile-meta">
+            <h1 class="profile-name">{{ user['name'] }}</h1>
+            <p class="profile-detail">
+                <i data-lucide="mail"></i>
+                {{ user['email'] }}
+            </p>
+            <p class="profile-detail">
+                <i data-lucide="calendar"></i>
+                Member since {{ user['created_at'][:10] }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="profile-stats-row">
+        <div class="profile-stat-card">
+            <div class="profile-stat-icon">
+                <i data-lucide="receipt"></i>
+            </div>
+            <div class="profile-stat-body">
+                <span class="profile-stat-label">Total transactions</span>
+                <span class="profile-stat-value">{{ stats.total_count }}</span>
+            </div>
+        </div>
+        <div class="profile-stat-card">
+            <div class="profile-stat-icon">
+                <i data-lucide="wallet"></i>
+            </div>
+            <div class="profile-stat-body">
+                <span class="profile-stat-label">Total spent</span>
+                <span class="profile-stat-value tabular">
+                    PKR {{ "%.2f"|format(stats.total_amount) }}
+                </span>
+            </div>
+        </div>
+        {% if stats.top_category %}
+        <div class="profile-stat-card">
+            <div class="profile-stat-icon">
+                <i data-lucide="trending-up"></i>
+            </div>
+            <div class="profile-stat-body">
+                <span class="profile-stat-label">Top Category</span>
+                <span class="profile-stat-value">{{ stats.top_category.category }}</span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="profile-grid">
+        <div class="recent-transactions-card">
+            <div class="profile-card-title">
+                <i data-lucide="clock"></i>
+                Recent Transactions
+            </div>
+            {% if recent_expenses %}
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th class="amount-cell">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in recent_expenses %}
+                    <tr>
+                        <td>{{ expense.date }}</td>
+                        <td>{{ expense.description }}</td>
+                        <td><span class="category-pill">{{ expense.category }}</span></td>
+                        <td class="amount-cell">PKR {{ "%.2f"|format(expense.amount) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="empty-note">No recent transactions available.</p>
+            {% endif %}
+        </div>
+
+        <div class="profile-breakdown-card">
+            <div class="profile-card-title">
+                <i data-lucide="tag"></i>
+                By Category
+            </div>
+            {% if stats.by_category %}
+            <div class="breakdown-list">
+                {% for cat in stats.by_category %}
+                {% set pct = ((cat.amount / stats.total_amount) * 100)|round(1) if stats.total_amount > 0 else 0 %}
+                <div class="breakdown-row breakdown-row--stacked">
+                    <div class="breakdown-left">
+                        <span class="breakdown-name">{{ cat.category }}</span>
+                        <span class="breakdown-badge">{{ cat.count }} expense{% if cat.count != 1 %}s{% endif %}</span>
+                    </div>
+                    <span class="breakdown-amount tabular">PKR {{ "%.2f"|format(cat.amount) }}</span>
+                    <div class="breakdown-bar-wrap">
+                        <div class="breakdown-bar" style="width: {{ pct }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="empty-note">No category spending to display.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

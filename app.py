@@ -26,6 +26,9 @@ def landing():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if session.get('user_id'):
+        return redirect(url_for('landing'))
+
     if request.method == "GET":
         if 'csrf_token' not in session:
             session['csrf_token'] = secrets.token_hex(32)
@@ -68,6 +71,9 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if session.get('user_id'):
+        return redirect(url_for('landing'))
+
     if request.method == "POST":
         email = request.form.get("email", "").strip().lower()
         password = request.form.get("password", "")
@@ -112,9 +118,11 @@ def privacy():
 # Placeholder routes — students will implement these                  #
 # ------------------------------------------------------------------ #
 
-@app.route("/logout")
+@app.route("/logout", methods=["POST"])
 def logout():
-    return "Logout — coming in Step 3"
+    session.clear()
+    flash("Logged out successfully", "logout")
+    return redirect(url_for("landing"))
 
 
 @app.route("/profile")

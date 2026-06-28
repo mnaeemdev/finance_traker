@@ -112,9 +112,11 @@ def privacy():
 # Placeholder routes — students will implement these                  #
 # ------------------------------------------------------------------ #
 
-@app.route("/logout")
+@app.route("/logout", methods=["POST"])
 def logout():
-    return "Logout — coming in Step 3"
+    session.clear()
+    flash("Logged out successfully", "success")
+    return redirect(url_for("landing"))
 
 
 @app.route("/profile")

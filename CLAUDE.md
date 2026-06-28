@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Spendly** is a personal expense tracking web application built with Flask (Python). It's a learning/tutorial project with incremental implementation steps. The landing page features a redesigned hero section with a YouTube video modal, Terms and Conditions, and Privacy Policy pages.
+**Spendly** is a personal expense tracking web application built with Flask (Python).
 
 ## Technology Stack
 
@@ -90,31 +90,10 @@ Route	Status
 --accent-light: #d4edda;           /* light green */
 --font-body: 'DM Sans', sans-serif;
 --font-display: 'DM Serif Display', serif;
---max-width: 1280px;               /* content max-width */
+--max-width: 1280px;                 /* content max-width */
 ```
 
 **Responsive breakpoints:** 900px, 768px (mobile-first approach)
-
-### Hero Section (Recent Redesign)
-
-The landing page hero is center-aligned, SaaS-style:
-- Announcement badge with green dot
-- Two-line headline ("Track every rupee." + "Know where it goes." in green)
-- Centered subheadline
-- Two CTA buttons (styled as pills with rounded corners)
-- Dashboard preview card with stat cards and spending bars
-- Fade-up animations with staggered timing (0.1s increments)
-
-The hero uses `data-animate="fade-up"` attributes on elements and applies CSS animations (`@keyframes fadeUpAnimation`). All animations and layout changes are in `style.css`.
-
-### Video Modal
-
-The "See how it works" button opens a modal with an embedded YouTube iframe. The modal:
-- Opens on button click
-- Closes on X button or clicking outside the modal
-- Stops video playback when closed (by resetting iframe src)
-
-Implementation in `landing.html` and `static/js/main.js`.
 
 ### Templates Structure
 
@@ -175,7 +154,3 @@ database/db.py is currently empty — do not assume helpers exist until the step
 - `SECRET_KEY=dev-secret-key-change-in-production`
 - `DATABASE_PATH=database/expenses.db`
 - `PORT=5001`
-
-## Git Workflow
-
-The project uses GitHub for version control. Recent commits include landing page redesigns and compliance page additions. Commits are made with descriptive messages and changes are pushed to the main branch.

@@ -4,7 +4,7 @@
 
 Implement user registration functionality that allows new users to create accounts with their name, email, and password. This step establishes the foundation for user authentication, enabling users to sign up and store their credentials securely in the database. Registration is available without login and is the entry point for new users to access the Spendly expense tracker. After successful registration, users must log in with their credentials.
 
-## Depends on
+## Depends
 
 Step 1 — Database Setup. The `users` table and `get_db()` function must be fully implemented before building registration.
 

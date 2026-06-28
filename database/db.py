@@ -45,6 +45,20 @@ def init_db():
     conn.close()
 
 
+def create_user(name, email, password):
+    """Create a new user with hashed password. Raises sqlite3.IntegrityError on duplicate email."""
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)",
+        (name, email, generate_password_hash(password))
+    )
+    user_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+    return user_id
+
+
 def seed_db():
     """Inserts sample data for development."""
     conn = get_db()

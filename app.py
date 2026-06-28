@@ -1,12 +1,18 @@
-from flask import Flask, render_template  # type: ignore[import]
-from database.db import get_db, init_db, seed_db
+import os
+import re
+import secrets
+import sqlite3
+
+from flask import Flask, render_template, request, redirect, url_for, session, flash  # type: ignore[import]
+from werkzeug.security import check_password_hash
+from database.db import get_db, init_db, seed_db, create_user
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
 
 with app.app_context():
     init_db()
     seed_db()
-
 
 
 # ------------------------------------------------------------------ #
@@ -18,13 +24,77 @@ def landing():
     return render_template("landing.html")
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html")
+    if request.method == "GET":
+        if 'csrf_token' not in session:
+            session['csrf_token'] = secrets.token_hex(32)
+        return render_template("register.html")
+
+    if request.method == "POST":
+        if request.form.get('csrf_token') != session.get('csrf_token'):
+            flash("Security error. Please try again.", 'error')
+            return redirect(url_for('register'))
+
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip().lower()
+        password = request.form.get("password", "")
+        password_confirm = request.form.get("password_confirm", "")
+
+        if not name:
+            flash("Please enter a name", "error")
+            return redirect(url_for("register"))
+
+        if not re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
+            flash("Invalid email format", "error")
+            return redirect(url_for("register"))
+
+        if len(password) < 8:
+            flash("Password must be at least 8 characters", "error")
+            return redirect(url_for("register"))
+
+        if password != password_confirm:
+            flash("Passwords do not match", "error")
+            return redirect(url_for("register"))
+
+        try:
+            create_user(name, email, password)
+            flash("Registration successful! Please log in with your credentials.", "success")
+            return redirect(url_for("login"))
+        except sqlite3.IntegrityError:
+            flash("Email already registered", "error")
+            return redirect(url_for("register"))
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        email = request.form.get("email", "").strip().lower()
+        password = request.form.get("password", "")
+
+        if not email or not password:
+            flash("Please enter both email and password", "error")
+            return redirect(url_for("login"))
+
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
+        user = cursor.fetchone()
+        conn.close()
+
+        if user is None:
+            flash("Email not found. Please register first.", "error")
+            return redirect(url_for("login"))
+
+        if not check_password_hash(user["password_hash"], password):
+            flash("Password is incorrect. Please try again.", "error")
+            return redirect(url_for("login"))
+
+        session["user_id"] = user["id"]
+        session["user_name"] = user["name"]
+        flash("Logged in successfully", "success")
+        return redirect(url_for("landing"))
+
     return render_template("login.html")
 
 

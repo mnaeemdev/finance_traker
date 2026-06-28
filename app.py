@@ -5,7 +5,7 @@ import sqlite3
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash  # type: ignore[import]
 from werkzeug.security import check_password_hash
-from database.db import get_db, init_db, seed_db, create_user
+from database.db import get_db, init_db, seed_db, create_user, get_user_by_id, get_expense_stats, get_recent_expenses
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
@@ -99,7 +99,7 @@ def login():
         session["user_id"] = user["id"]
         session["user_name"] = user["name"]
         flash("Logged in successfully", "success")
-        return redirect(url_for("landing"))
+        return redirect(url_for("profile"))
 
     return render_template("login.html")
 
@@ -127,7 +127,14 @@ def logout():
 
 @app.route("/profile")
 def profile():
-    return "Profile page — coming in Step 4"
+    if not session.get("user_id"):
+        flash("Please log in to view your profile.", "error")
+        return redirect(url_for("login"))
+
+    user = get_user_by_id(session["user_id"])
+    stats = get_expense_stats(session["user_id"])
+    recent_expenses = get_recent_expenses(session["user_id"])
+    return render_template("profile.html", user=user, stats=stats, recent_expenses=recent_expenses)
 
 
 @app.route("/expenses/add")

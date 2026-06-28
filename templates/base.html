@@ -20,6 +20,7 @@
             </a>
             <div class="nav-links">
                 {% if session.get('user_id') %}
+                    <a href="{{ url_for('profile') }}" class="nav-profile-link">Profile</a>
                     <span class="nav-greeting">Hi, {{ session['user_name'].split()[0] }}</span>
                     <form method="POST" action="{{ url_for('logout') }}" class="nav-logout-form">
                         <button type="submit" class="nav-logout-btn">Sign out</button>
@@ -59,6 +60,7 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block scripts %}{% endblock %}
 </body>

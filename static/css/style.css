@@ -892,6 +892,301 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ------------------------------------------------------------------ */
+/* Profile                                                             */
+/* ------------------------------------------------------------------ */
+
+.profile-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Header card */
+.profile-hero-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-meta {
+    flex: 1;
+}
+
+.profile-name {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.profile-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    margin-top: 0.35rem;
+}
+
+.profile-detail svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* Stats row */
+.profile-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+..profile-stat-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1.75fr 1fr;
+    gap: 1rem;
+}
+
+.recent-transactions-card,
+.profile-breakdown-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 100%;
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.transactions-table th {
+    color: var(--ink-muted);
+    text-align: left;
+    font-weight: 600;
+}
+
+.transactions-table tbody tr:hover {
+    background: var(--paper-warm);
+}
+
+.category-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+}
+
+.amount-cell {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.empty-note {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    margin: 1rem 0 0;
+}
+
+.profile-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-light);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-stat-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.profile-stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.profile-stat-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.profile-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--ink);
+    line-height: 1;
+}
+
+.tabular {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Breakdown card */
+.profile-breakdown-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.profile-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+}
+
+.profile-card-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+}
+
+.breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.breakdown-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+.breakdown-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.breakdown-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+.breakdown-badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.breakdown-bar-wrap {
+    height: 6px;
+    background: var(--border-soft);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.breakdown-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+    min-width: 4px;
+}
+
+.breakdown-amount {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Empty state */
+.profile-empty-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--ink-muted);
+}
+
+.profile-empty-card svg {
+    width: 40px;
+    height: 40px;
+    color: var(--ink-faint);
+}
+
+.profile-empty-card p {
+    font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive                                                          */
 /* ------------------------------------------------------------------ */
 
@@ -901,6 +1196,16 @@ a { color: inherit; text-decoration: none; }
     }
 
     .features-inner { grid-template-columns: 1fr; }
+
+    .profile-stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -922,6 +1227,75 @@ a { color: inherit; text-decoration: none; }
         width: 100%;
     }
 
+    .profile-page {
+        padding: 2rem 1rem;
+    }
+
+    .profile-hero-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .profile-breakdown-card,
+    .recent-transactions-card {
+        padding: 1.5rem;
+    }
+
+    .transactions-table {
+        font-size: 0.9rem;
+    }
+
+    .breakdown-row {
+        grid-template-columns: 1fr;
+    }
+
+    .breakdown-row--stacked .breakdown-amount {
+        text-align: left;
+    }
+
+    .breakdown-bar-wrap {
+        margin-top: 0.75rem;
+    }
+
+    .breakdown-left {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-stat-card {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .profile-stat-body {
+        width: 100%;
+    }
+
+    .profile-stat-label {
+        margin-bottom: 0;
+    }
+
+    .transactions-table th,
+    .transactions-table td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .category-pill {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
     .dashboard-card {
         padding: 1.5rem;
         max-width: 100%;
@@ -934,6 +1308,28 @@ a { color: inherit; text-decoration: none; }
 
     .dashboard-chart {
         gap: 1rem;
+    }
+
+    .profile-hero-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-detail {
+        justify-content: center;
+    }
+
+    .profile-stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .breakdown-row {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+    }
+
+    .breakdown-bar-wrap {
+        grid-column: 1 / -1;
     }
 }
 

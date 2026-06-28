@@ -46,3 +46,10 @@ navbarToasts.forEach((toast) => {
         }, 300);
     }, 2000);
 });
+
+// Initialize Lucide icons
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});

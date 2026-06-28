@@ -121,7 +121,7 @@ def privacy():
 @app.route("/logout", methods=["POST"])
 def logout():
     session.clear()
-    flash("Logged out successfully", "success")
+    flash("Logged out successfully", "logout")
     return redirect(url_for("landing"))
 
 

@@ -1,8 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "bash(git init)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(python3)"
     ]
   }
 }

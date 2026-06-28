@@ -153,6 +153,56 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ------------------------------------------------------------------ */
+/* Navbar Toast                                                        */
+/* ------------------------------------------------------------------ */
+
+.navbar-toast-container {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: auto;
+    max-width: 300px;
+    z-index: 99;
+}
+
+.navbar-toast {
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: 0 4px 12px rgba(15, 15, 15, 0.1);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-toast--success {
+    background: var(--accent);
+    color: var(--paper);
+    border-left: 4px solid var(--accent);
+}
+
+.navbar-toast--logout {
+    background: var(--danger);
+    color: var(--paper);
+    border-left: 4px solid var(--danger);
+}
+
+/* ------------------------------------------------------------------ */
 /* Flash Messages                                                      */
 /* ------------------------------------------------------------------ */
 
@@ -166,10 +216,26 @@ a { color: inherit; text-decoration: none; }
 }
 
 .flash {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     padding: 1rem;
     border-radius: var(--radius-md);
     font-size: 0.95rem;
+    font-weight: 500;
     animation: fadeUpAnimation 0.3s ease-out;
+    box-shadow: 0 8px 24px rgba(15, 15, 15, 0.08);
+}
+
+.flash-close {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
 }
 
 .flash--success {

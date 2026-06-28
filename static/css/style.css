@@ -273,6 +273,13 @@ a { color: inherit; text-decoration: none; }
     line-height: 1;
 }
 
+.currency-label {
+    font-size: 0.6rem;
+    vertical-align: super;
+    margin-right: 0.33rem;
+    color: var(--ink-muted);
+}
+
 .stat-change {
     font-size: 0.8rem;
     color: var(--ink-muted);
